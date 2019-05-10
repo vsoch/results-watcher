@@ -3,12 +3,12 @@
 This is an example watcher that is optimized to record results. For example, 
 let's say that we are running jobs on an HPC resource. 
 Each job would finish with a result value (string, or json equivalent)
-and then call export variables to the environment, and call 
+and then export variables to the environment, and call 
 watchme to record the result for some task:
 
 ```bash
-export WATCHMEENV_density=0.45
-export WATCHME_weight=32
+export WATCHMEENV_density=0.48
+export WATCHMEENV_weight=33
 watchme run results-watcher task-hpc-job
 ```
 
@@ -35,17 +35,20 @@ When time is ready for export, it's done via .git with a simple command:
 
 ```bash
 $ watchme export results-watcher task-hpc-job density
-git log --all --oneline --pretty=tformat:"%H" --grep "ADD results" 384d7bdc6e54af6266377b30ff0d47a40c4fc28d..732dee443caa19f0e50ec1e9b89ca3a542459cc7 -- task-hpc-job/density
+git log --all --oneline --pretty=tformat:"%H" --grep "ADD results" 384d7bdc6e54af6266377b30ff0d47a40c4fc28d..8126a6241ebcfbbdef41fe501199388b8e513575 -- task-hpc-job/density
 {
     "commits": [
+        "8126a6241ebcfbbdef41fe501199388b8e513575",
         "732dee443caa19f0e50ec1e9b89ca3a542459cc7",
         "c0861ed8ebe473cc3efa1db5f84e10d05d61bbc8"
     ],
     "dates": [
+        "2019-05-10 02:34:25 -0400",
         "2019-05-08 15:16:14 -0400",
         "2019-05-08 15:11:32 -0400"
     ],
     "content": [
+        "0.48",
         "0.55",
         "0.45"
     ]
